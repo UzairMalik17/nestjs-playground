@@ -37,20 +37,20 @@ export class UserController {
     return this.userService.addUser(user);
   }
 
-  @Put()
-  updateUser(@Body() user: GetUsersDTO) {
+  @Put(':id')
+  updateUser(@Body() user: GetUsersDTO, @Param('id') id: string) {
     console.log(this.requestIdService.getRequestId());
-    return this.userService.updateUser(user);
+    return this.userService.updateUser(user, id);
   }
 
   @Delete(':id')
-  deleteUser(@Param('id', ParseIntPipe) id: number) {
+  deleteUser(@Param('id') id: string) {
     console.log(this.requestIdService.getRequestId());
     return this.userService.deleteUser(id);
   }
 
   @Get(':id')
-  getUser(@Param('id', ParseIntPipe) id: number) {
+  getUser(@Param('id') id: string) {
     console.log(this.requestIdService.getRequestId());
     return this.userService.getUserById(id);
   }
